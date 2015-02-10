@@ -1,4 +1,4 @@
-div#navigation {
+/*div#navigation {
     background-color: #00FF00;
     color: #0000FF;
     float: left;
@@ -7,5 +7,13 @@ div#navigation {
 
 div#menu {
    background-color: #FFA000;
+}*/
+
+.sidebar {
+	position: fixed;
+	margin-top: 20px;
 }
 
+.main {
+		margin-top: 20px;
+}
