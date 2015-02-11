@@ -72,7 +72,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`Artikel` (
   `idArtikel` INT NOT NULL AUTO_INCREMENT,
-  `Titel` VARCHAR(250) NULL,
+  `ArtikelTitel` VARCHAR(250) NULL,
   `fidUntergruppe` INT NOT NULL,
   `NettoPreis` DECIMAL NULL,
   `MwStSatz` DECIMAL NULL,
@@ -82,12 +82,12 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Artikel` (
   FOREIGN KEY (`fidUntergruppe`) REFERENCES Untergruppe (`idUntergruppe`))
 ENGINE = InnoDB;
 
-INSERT INTO `Artikel` (`idArtikel`, `Titel`, `fidUntergruppe`, `NettoPreis`, `MwStSatz`, `Beschreibung`, `BildLink`) VALUES
+INSERT INTO `Artikel` (`idArtikel`, `ArtikelTitel`, `fidUntergruppe`, `NettoPreis`, `MwStSatz`, `Beschreibung`, `BildLink`) VALUES
 (1, 'The Dispossed', 2, 7.99 , 7, 'Beschreibung', NULL),
 (2, 'Vögel', 1, 2, 7, 'Buch zur Vogelbestimmung', NULL),
-(3, 'Toaster', 3, '9', '17', 'Der super-mega Toaster sieht nicht nur super mega aus, nein! er kann auch toasten. Der super-mega Toaster sieht nicht nur super mega aus, nein! er kann auch toasten. Der super-mega Toaster sieht nicht nur super mega aus, nein! er kann auch toasten', 'zzz:\\data\\lol\\BitfunKopie\\Bsdfpx\\Vsdfws\\Sasdfhared.png'),
-(4, 'Toaster - Schwarz - Mega', 3, '9', '17', 'Der super-mega Toaster sieht nicht nur super-mega aus, er ist auch super-mega nützlich. Er kann tatsächlich super-mega cool toasten!!!! ... Der super-mega Toaster sieht nicht nur super-mega aus, er ist auch super-mega nützlich.', 'zzz:\\\\blalbajb\\alskdfj\\weihr\\awer.png'),
-(5, 'Kaffeemaschine - Supercross', 3, '20', '29', 'Die crazy crossy mega Kaffeemaschine röstet Ihren Kaffee mit super magic für ein volles Aroma...', 'zzz:\\\\blalbajb\\alskdfj\\weihr\\24ajskdhfr.png'),
+(3, 'Toaster', 3, '9', '17', 'Der super-mega Toaster sieht nicht nur super mega aus, nein! er kann auch toasten. Der super-mega Toaster sieht nicht nur super mega aus, nein! er kann auch toasten. Der super-mega Toaster sieht nicht nur super mega aus, nein! er kann auch toasten', 'http://media.elektronik-star.de/images/L/10005177_title_toaster_klarstein_schwarz.jpg'),
+(4, 'Toaster - Schwarz - Mega', 3, '9', '17', 'Der super-mega Toaster sieht nicht nur super-mega aus, er ist auch super-mega nützlich. Er kann tatsächlich super-mega cool toasten!!!! ... Der super-mega Toaster sieht nicht nur super-mega aus, er ist auch super-mega nützlich.', 'http://ecx.images-amazon.com/images/I/31B6JA0V84L.jpg'),
+(5, 'Kaffeemaschine - Supercross', 3, '20', '29', 'Die crazy crossy mega Kaffeemaschine röstet Ihren Kaffee mit super magic für ein volles Aroma...', 'http://src.discounto.de/pics/product/22495/38420_Rossmann-Ideenwelt-Thermo-Kaffeemaschine-22495_xxl.jpeg'),
 (6, 'Die Pfanne', 4, '50', '29', 'Die Pfanne, aus dem Hause Haushaltszubehör, gehört zu den universellsten Küchenhelfern schlecht hin. In jedem Haushalt ist sie zu sehen, selbst die Grossmutter kennt sie noch.', 'zzz:\\\\blalbajb\\alskdfj\\weihr\\lkhe4w5.png');
 
 
