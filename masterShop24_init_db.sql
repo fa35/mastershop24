@@ -73,16 +73,16 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `mydb`.`Artikel` (
   `idArtikel` INT NOT NULL AUTO_INCREMENT,
   `Titel` VARCHAR(250) NULL,
-  `idUntergruppe` INT NULL,
+  `fidUntergruppe` INT NULL,
   `NettoPreis` DECIMAL NULL,
   `MwStSatz` DECIMAL NULL,
   `Beschreibung` VARCHAR(250) NULL,
   `BildLink` varchar(250) DEFAULT NULL,
   PRIMARY KEY (`idArtikel`),
-  FOREIGN KEY (`idUntergruppe`) REFERENCES Untergruppe (`idUntergruppe`))
+  FOREIGN KEY (`fidUntergruppe`) REFERENCES Untergruppe (`idUntergruppe`))
 ENGINE = InnoDB;
 
-INSERT INTO `Artikel` (`idArtikel`, `Titel`, `idUntergruppe`, `NettoPreis`, `MwStSatz`, `Beschreibung`, `BildLink`) VALUES
+INSERT INTO `Artikel` (`idArtikel`, `Titel`, `fidUntergruppe`, `NettoPreis`, `MwStSatz`, `Beschreibung`, `BildLink`) VALUES
 (1, 'Foo', NULL, 2.00 , NULL, 'Beschreibung', NULL),
 (2, 'Vögel', 0, 2, 7, 'Buch zur Vogelbestimmung', NULL),
 (3, 'Toaster', 1, '9', '17', 'Der super-mega Toaster sieht nicht nur super mega aus, nein! er kann auch toasten. Der super-mega Toaster sieht nicht nur super mega aus, nein! er kann auch toasten. Der super-mega Toaster sieht nicht nur super mega aus, nein! er kann auch toasten', 'zzz:\\data\\lol\\BitfunKopie\\Bsdfpx\\Vsdfws\\Sasdfhared.png'),
@@ -101,6 +101,10 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Hauptgruppe` (
   PRIMARY KEY (`idHauptgruppe`))
 ENGINE = InnoDB;
 
+INSERT INTO `Hauptgruppe` (`idHauptgruppe`, `Titel`) VALUES
+(1, 'Literatur'),
+(2, 'Haushaltsgeräte');
+
 
 -- -----------------------------------------------------
 -- Table `mydb`.`Untergruppe`
@@ -108,8 +112,16 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `mydb`.`Untergruppe` (
   `idUntergruppe` INT NOT NULL AUTO_INCREMENT,
   `Titel` VARCHAR(150) NULL,
-  PRIMARY KEY (`idUntergruppe`))
+  `fidHauptgruppe` INT NOT NULL,
+  PRIMARY KEY (`idUntergruppe`),
+  FOREIGN KEY (`fidHauptgruppe`) REFERENCES Hauptgruppe (`idHauptgruppe`))
 ENGINE = InnoDB;
+
+INSERT INTO `Untergruppe` (`idUntergruppe`, `Titel`, `fidHauptgruppe`) VALUES
+(1, 'Sachbücher', 1),
+(2, 'Romane', 1),
+(3, 'Elektrogeräte', 2),
+(4, 'Kochgeschirr', 2);
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
