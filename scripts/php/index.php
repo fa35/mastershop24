@@ -4,6 +4,7 @@ require 'navigation.php';
 require 'menu.php';
 require 'util.php';
 require 'body.php';
+require 'pdo.php';
 
 $hlp = new util();
 $params=$hlp->getUrlParams($_SERVER['REQUEST_URI']);
