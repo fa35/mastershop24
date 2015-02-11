@@ -5,8 +5,21 @@ class navigation {
     }
     public function createnav() {
        global $doc;
-       $doc .= '<div id="navigation">'."\n";
-       $doc .= "<ul><li>foo</li><li>bar</li></ul>"."\n"; 
-       $doc .= "</div>"."\n";
+       $doc .= '<div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
+            <li><a href="#">Elektro</a></li>
+            <li><a href="#">Kleidung</a></li>
+            <li><a href="#">Sport</a></li>
+            <li><a href="#">Motorsport</a></li>
+          </ul>
+          <ul class="nav nav-sidebar">
+            <li><a href="">Nahrung</a></li>
+            <li><a href="">Print</a></li>
+            <li><a href="">Spielzeug</a></li>
+            <li><a href="">Kleintiere</a></li>
+            <li><a href="">Haushalt</a></li>
+          </ul>
+        </div>';
     }
 }
