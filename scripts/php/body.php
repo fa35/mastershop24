@@ -4,8 +4,9 @@ class body {
     public function body(){
     }
     public function createbody() {
-       global $doc;
-       $doc .= '<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+		global $db;
+        global $doc;
+        $doc .= '<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <h1 class="page-header">MasterShop24</h1>
 
           <div class="row placeholders">
@@ -22,31 +23,30 @@ class body {
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>Header</th>
-                  <th>Header</th>
-                  <th>Header</th>
+                  <th>Titel</th>
+                  <th>Untergruppe</th>
+                  <th>Preis</th>
                   <th>Header</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr>
-                  <td>1,001</td>
-                  <td>Lorem</td>
-                  <td>ipsum</td>
-                  <td>dolor</td>
-                  <td>sit</td>
-                </tr>
-                <tr>
-                  <td>1,002</td>
-                  <td>amet</td>
-                  <td>consectetur</td>
-                  <td>adipiscing</td>
-                  <td>elit</td>
-                </tr>
-              </tbody>
+              <tbody>';
+              $sqlQuery = 'SELECT * FROM Artikel';
+              $articlelist = $db->getQueryResults($sqlQuery);
+              foreach ($articlelist as $article){
+				  $articleID = $article['idArtikel'];
+				  $price = $article['NettoPreis'];
+				  $subgroup = $article['idUntergruppe'];
+				  $title = $article['Titel'];
+                  $doc .= "<tr>
+                  <td>$articleID</td>
+                  <td>$title</td>
+                  <td>$subgroup</td>
+                  <td>$price</td>
+                </tr>";
+			}
+              $doc .= '              </tbody>
             </table>
           </div>
-        </div>
-      ';
+        </div>';
     }
 }
