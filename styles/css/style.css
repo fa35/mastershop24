@@ -7,35 +7,53 @@
 
 div#menu {
    background-color: #FFA000;
-}*/
+   }*/
 
-.sidebar {
-	position: fixed;
-	margin-top: 30px;
-}
+   .sidebar {
+   	position: fixed;
+   	margin-top: 30px;
+   }
 
-.main {
-		margin-top: 30px;
-}
+   .main {
+   	margin-top: 30px;
+   }
 
-.navbar-nav {
-	margin: 5px 10px;
-}
+   .navbar-nav {
+   	margin: 5px 10px;
+   }
 
-ul.nav.navbar-nav > li {
+   ul.nav.navbar-nav > li {
 
-	margin: 0px 5px;
-	font-weight: bold;
-	font-size: 15pt;
-	color: #CDC9C9;
-}
+   	margin: 0px 5px;
+   	font-weight: bold;
+   	font-size: 15pt;
+   	color: #CDC9C9;
+   }
 
-ul.nav.navbar-nav > li > a:hover {
-	color: #FFA81E;
-	
-}
+   ul.nav.navbar-nav > li > a:hover {
+   	color: #FFA81E;
 
-ul.nav.nav-sidebar > li > a {
+   }
 
-		font-weight: bold;
-	}
+   ul.nav.nav-sidebar > li > a {
+
+   	font-weight: bold;
+   }
+
+
+   .nudAmount {
+
+   	width: 43px;
+   	border-radius: 3px;
+   	border: grey solid thin;
+   	text-align: center;   }
+
+   	.addButton {
+
+   		border-radius: 3px;
+   		font-size: 8pt;
+   		border: solid thin gray;
+   		background-color: lightgrey;
+   		font-weight: bold;
+   		
+   	}
