@@ -6,6 +6,8 @@ class body {
     public function createbody() {
 		global $db;
         global $doc;
+        global $params;
+        $category = $params['category'];
         $doc .= '<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <h1 class="page-header">MasterShop24</h1>
 
@@ -30,7 +32,15 @@ class body {
                 </tr>
               </thead>
               <tbody>';
-              $sqlQuery = 'SELECT * FROM Artikel';
+              if ($category) {
+	              $sqlQuery = "SELECT * FROM Artikel as a
+                               INNER JOIN Untergruppe as u
+                               ON a.fidUntergruppe = u.idUntergruppe
+                               WHERE fidHauptgruppe = $category";
+			} else {
+				$sqlQuery = "SELECT * FROM Artikel";
+			}
+
               $articlelist = $db->getQueryResults($sqlQuery);
               foreach ($articlelist as $article){
 				  $articleID = $article['idArtikel'];
