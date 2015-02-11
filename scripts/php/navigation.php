@@ -5,8 +5,12 @@ class navigation {
     }
     public function createnav() {
        global $doc;
-       $doc .= '<div id="navigation">'."\n";
-       $doc .= "<ul><li>foo</li><li>bar</li></ul>"."\n"; 
-       $doc .= "</div>"."\n";
+       $doc .= '<div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
+            <li><a href="?category=1">Literatur</a></li>
+            <li><a href="?category=2">Haushaltsgeräte</a></li>
+          </ul>
+        </div>';
     }
 }

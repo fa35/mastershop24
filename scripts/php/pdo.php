@@ -1,32 +1,39 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "2h1fxL,Jtx";
-$dbname = "mydb";
 
-try {
-    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-    // set the PDO error mode to exception
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    echo "Connected successfully\n";
-    }
-catch(PDOException $e)
-    {
-    echo "Connection failed: " . $e->getMessage();
+class dbconnect {
+    var $servername = "localhost";
+    var $username = "root";
+    var $password = "2h1fxL,Jtx";
+    var $dbname = "mydb";
+    var $conn;
+
+    function dbconnect(){}
+
+    function getConnection(){
+        try {
+            $this->conn = new PDO("mysql:host=$this->servername;dbname=$this->dbname", $this->username, $this->password);
+            // set the PDO error mode to exception
+            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            //echo "Connected successfully\n";
+        }
+        catch(PDOException $e){
+            echo "Connection failed: " . $e->getMessage();
+        }
+        return $this->conn;
     }
 
-$sql = "SELECT * FROM Artikel";
-$result = $conn->query($sql);
+    function getQueryResults($sqlQuery){
 
-if ($result->num_rows > 0) {
-    // output data of each row
-    while($row = $result->fetch_assoc()) {
-		$title = $row["Titel"];
-        echo $title . "<br>";
+        //$sqlQuery = "SELECT * FROM Artikel";
+
+        $result = Array();
+        foreach ($this->conn->query($sqlQuery) as $row) {
+            $result[] = $row;
+        }
+        return $result;
     }
-} else {
-    echo "0 results";
+
+    function closeConnection(){
+        $this->conn->close();
+    }
 }
-
-$conn->close();
-?>
