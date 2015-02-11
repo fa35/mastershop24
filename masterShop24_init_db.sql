@@ -1,6 +1,8 @@
--- SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
--- SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
--- SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
+
+DROP DATABASE mydb;
 
 CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ;
 USE `mydb` ;
@@ -71,13 +73,23 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `mydb`.`Artikel` (
   `idArtikel` INT NOT NULL AUTO_INCREMENT,
   `Titel` VARCHAR(250) NULL,
-  `idHauptgruppe` INT NULL,
+  `idUntergruppe` INT NULL,
   `NettoPreis` DECIMAL NULL,
   `MwStSatz` DECIMAL NULL,
   `Beschreibung` VARCHAR(250) NULL,
-  `idUntergruppe` INT NULL,
-  PRIMARY KEY (`idArtikel`))
+  `BildLink` varchar(250) DEFAULT NULL,
+  PRIMARY KEY (`idArtikel`),
+  FOREIGN KEY (`idUntergruppe`) REFERENCES Untergruppe (`idUntergruppe`))
 ENGINE = InnoDB;
+
+INSERT INTO `Artikel` (`idArtikel`, `Titel`, `idUntergruppe`, `NettoPreis`, `MwStSatz`, `Beschreibung`, `BildLink`) VALUES
+(1, 'Foo', NULL, 2.00 , NULL, 'Beschreibung', NULL),
+(2, 'Vögel', 0, 2, 7, 'Buch zur Vogelbestimmung', NULL),
+(3, 'Toaster', 1, '9', '17', 'Der super-mega Toaster sieht nicht nur super mega aus, nein! er kann auch toasten. Der super-mega Toaster sieht nicht nur super mega aus, nein! er kann auch toasten. Der super-mega Toaster sieht nicht nur super mega aus, nein! er kann auch toasten', 'zzz:\\data\\lol\\BitfunKopie\\Bsdfpx\\Vsdfws\\Sasdfhared.png'),
+(4, 'Toaster - Schwarz - Mega', 1, '9', '17', 'Der super-mega Toaster sieht nicht nur super-mega aus, er ist auch super-mega nützlich. Er kann tatsächlich super-mega cool toasten!!!! ... Der super-mega Toaster sieht nicht nur super-mega aus, er ist auch super-mega nützlich.', 'zzz:\\\\blalbajb\\alskdfj\\weihr\\awer.png'),
+(5, 'Kaffeemaschine - Supercross', 1, '20', '29', 'Die crazy crossy mega Kaffeemaschine röstet Ihren Kaffee mit super magic für ein volles Aroma...', 'zzz:\\\\blalbajb\\alskdfj\\weihr\\24ajskdhfr.png'),
+(6, 'Die Pfanne', 1, '50', '29', 'Die Pfanne, aus dem Hause Haushaltszubehör, gehört zu den universellsten Küchenhelfern schlecht hin. In jedem Haushalt ist sie zu sehen, selbst die Grossmutter kennt sie noch.', 'zzz:\\\\blalbajb\\alskdfj\\weihr\\lkhe4w5.png');
+
 
 
 -- -----------------------------------------------------
