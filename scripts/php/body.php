@@ -35,7 +35,10 @@ class body {
               foreach ($articlelist as $article){
 				  $articleID = $article['idArtikel'];
 				  $price = $article['NettoPreis'];
-				  $subgroup = $article['idUntergruppe'];
+				  $subgroupID = $article['fidUntergruppe'];
+				  $subgroupQuery = "SELECT Titel FROM Untergruppe WHERE idUntergruppe=$subgroupID";
+				  $subgroupQResult = $db->getQueryResults($subgroupQuery);
+				  $subgroup = $subgroupQResult[0]['Titel'];
 				  $title = $article['Titel'];
                   $doc .= "<tr>
                   <td>$articleID</td>
