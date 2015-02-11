@@ -7,7 +7,9 @@ class body {
         global $db;
         global $doc;
         global $params;
-        $category = $params['category'];
+        if (isset($params['category'])) {
+	        $category = $params['category'];
+		}
         $doc .= '<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <h1 class="page-header">MasterShop24</h1>
 
@@ -30,7 +32,7 @@ class body {
                 </tr>
               </thead>
               <tbody>';
-              if ($category) {
+              if (isset($category)) {
                   $sqlQuery = "SELECT * FROM Artikel as a
                                INNER JOIN Untergruppe as u
                                ON a.fidUntergruppe = u.idUntergruppe
