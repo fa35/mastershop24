@@ -65,3 +65,11 @@ div#menu {
             border: solid thin black;
 
       }
+
+
+.footer {
+
+   font-size: 8pt;
+   text-align: center;
+   font-weight: bold;
+}
