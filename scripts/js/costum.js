@@ -4,7 +4,7 @@ function Login(e){
 	var password = document.getElementById('loginPassword').value;
 
 	alert("address: " + mailaddress + "    " + " pw: " + password);
-
+	window.location = 'login.php?mailaddress=' + mailaddress + '&pwd='+ password;
 };
 
 
@@ -21,4 +21,12 @@ function Register(e){
 	var regPw = document.getElementById('regPasswd').value;
 
 	alert("lastname: " + lastname + " firstname: " + firstname + " street: " +street + " housenr: " + housenr + " postcode: " + postcode + " place: " + place + " mailaddress: " + regMailAdd + " password: " + regPw);
+
+	window.location = 'registration.php?lastname=' + lastname + '&firstname='+firstname; // und so weiter
 }
+
+
+$ (document).on('click', '.addButton', function(e){
+	var element = document.getElementByClass('addButton');
+	var ele = e;
+});
