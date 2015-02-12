@@ -21,6 +21,7 @@ $doc .= '	<title>Mastershop24</title>' . "\n";
 $doc .= '	<meta charset="UTF-8" />' . "\n";
 $doc .= '	<link rel="stylesheet" type="text/css" href="../../styles/css/bootstrap.css">' . "\n";
 $doc .= '	<link rel="stylesheet" type="text/css" href="../../styles/css/style.css">' . "\n";
+$doc .= '	<link rel="stylesheet" type="text/css" href="../../styles/css/layout.css">' . "\n";
 $doc .= '	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>' . "\n";
 $doc .= '	<script type="text/javascript" src="../js/bootstrap.js"></script>' . "\n";
 $doc .= '	<script type="text/javascript" src="../js/npm.js"></script>' . "\n";
@@ -28,14 +29,12 @@ $doc .= "</head>\n";
 $doc .= "<body>\n";
 $menu = new menu();
 $menu->createmenu();
+$doc .= '<div id="bodyAndNav">' . "\n";
 $nav = new navigation();
 $nav->createnav($URL);
 $body = new body();
 $body->createbody();
-
-//foreach ($params as $key => $value){
-    //$doc .= $key . "=>" . $value . "<br />";
-//}
+$doc .= '</div>' . "\n";
 $doc .= "</body>";
 $doc .= "</html>";
 

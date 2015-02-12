@@ -4,13 +4,51 @@ class body {
     public function body(){
     }
     public function createbody() {
-        global $db;
-        global $doc;
         global $params;
         if (isset($params['category'])) {
-	        $category = $params['category'];
+	        $this->articleview(intval($params['category']));
+		} elseif (isset($params['login']) && $params['login'] != "success") {
+			print_r($params);
+			$this->loginview();
+		} else {
+			$this->articleview(null);
 		}
-        $doc .= '<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+	}
+
+	private function loginview(){
+		global $db;
+		global $doc;
+		$doc .= '			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+				<h1 class="page-header">MasterShop24</h1>
+
+				<div class="row placeholders">
+					<h4>Login</h4>
+				</div>
+
+
+				<div class="table-responsive">
+					<table class="table table-striped table-borderd">
+
+						<tbody>
+							<tr><form action="login.php" method="post">
+   Username: <input type="text" name="username" /><br />
+   Passwort: <input type="password" name="passwort" /><br />
+   <input type="submit" value="Anmelden" />
+  </form></tr>
+						</tbody>
+					</table>
+				</div>
+
+			</div>';
+	}//onclick="Login()"
+
+	private function articleview($category) {
+        global $db;
+        global $doc;
+        $doc .= '<script type="text/javascript" src="../scripts/js/costum.js"></script>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <h1 class="page-header">MasterShop24</h1>
 
           <div class="row placeholders">
@@ -32,7 +70,7 @@ class body {
                 </tr>
               </thead>
               <tbody>';
-              if (isset($category)) {
+              if (isset($category) && !$category == '') {
                   $sqlQuery = "SELECT * FROM Artikel as a
                                INNER JOIN Untergruppe as u
                                ON a.fidUntergruppe = u.idUntergruppe
