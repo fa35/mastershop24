@@ -3,7 +3,7 @@
 class dbconnect {
     var $servername = "localhost";
     var $username = "root";
-    var $password = "2h1fxL,Jtx";
+    var $password = "re@47";
     var $dbname = "mydb";
     var $conn;
 

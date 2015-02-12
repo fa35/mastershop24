@@ -1,108 +1,113 @@
 <?php
 
 class body {
-    public function body(){
-    }
-    public function createbody() {
-        global $params;
-        if (isset($params['category'])) {
-	        $this->articleview(intval($params['category']));
-		} elseif (isset($params['login']) && $params['login'] != "success") {
-			print_r($params);
-			$this->loginview();
-		} else {
-			$this->articleview(null);
-		}
+  public function body(){
+  }
+  public function createbody() {
+    global $params;
+    if (isset($params['category'])) {
+     $this->articleview(intval($params['category']));
+   } elseif (isset($params['login']) && $params['login'] != "success") {
+     print_r($params);
+     $this->loginview();
+   } else {
+     $this->articleview(null);
+   }
 
-	}
+ }
 
-	private function loginview(){
-		global $db;
-		global $doc;
-		$doc .= '			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+ private function loginview(){
+  global $db;
+  global $doc;
+  $doc .= '			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
-				<h1 class="page-header">MasterShop24</h1>
+  <h1 class="page-header">MasterShop24</h1>
 
-				<div class="row placeholders">
-					<h4>Login</h4>
-				</div>
+  <div class="row placeholders">
+   <h4>Login</h4>
+ </div>
 
 
-				<div class="table-responsive">
-					<table class="table table-striped table-borderd">
+ <div class="table-responsive">
+   <table class="table table-striped table-borderd">
+    <tbody>
+      <form action="login.php" method="post">
+       <tr>
+         <td><input type="text" name="username" placeholder="Username"/></td>
+       </tr>
+       <tr>
+         <td><input type="password" name="passwort" placeholder="Passwort"/></td>
+       </tr>
+       <tr>
+         <td><input type="submit" value="Anmelden" /></td>
+       </tr>
+     </form>
+   </tbody>
+ </table>
+</div>
 
-						<tbody>
-							<tr><form action="login.php" method="post">
-   Username: <input type="text" name="username" /><br />
-   Passwort: <input type="password" name="passwort" /><br />
-   <input type="submit" value="Anmelden" />
-  </form></tr>
-						</tbody>
-					</table>
-				</div>
-
-			</div>';
+</div>';
 	}//onclick="Login()"
 
 	private function articleview($category) {
-        global $db;
-        global $doc;
-        $doc .= '<script type="text/javascript" src="../scripts/js/costum.js"></script>
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <h1 class="page-header">MasterShop24</h1>
+    global $db;
+    global $doc;
+    $doc .= '<script type="text/javascript" src="../scripts/js/costum.js"></script>
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+      <h1 class="page-header">MasterShop24</h1>
 
-          <div class="row placeholders">
+      <div class="row placeholders">
 
-              <h4>Hauptkategorie / Unterkategorie oder Suchbegriff</h4>
-              <span class="text-muted">Hauptkategorie / Unterkategorie</span>
+        <h4>Hauptkategorie / Unterkategorie oder Suchbegriff</h4>
+        <span class="text-muted">Hauptkategorie / Unterkategorie</span>
 
-          </div>
+      </div>
 
-          <div class="table-responsive">
-            <table class="table table-striped table-borderd">
-              <thead>
-                <tr>
-                    <th>Titel</th>
-                    <th>Preis</th>
-                    <th>Anzahl</th>
-                    <th>Beschreibung</th>
-                    <th>Bild</th>
-                </tr>
-              </thead>
-              <tbody>';
-              if (isset($category) && !$category == '') {
-                  $sqlQuery = "SELECT * FROM Artikel as a
-                               INNER JOIN Untergruppe as u
-                               ON a.fidUntergruppe = u.idUntergruppe
-                               WHERE fidHauptgruppe = $category";
+      <div class="table-responsive">
+        <table class="table table-striped table-borderd">
+          <thead>
+            <tr>
+              <th>Titel</th>
+              <th>Preis</th>
+              <th>Anzahl</th>
+              <th>Beschreibung</th>
+              <th>Bild</th>
+            </tr>
+          </thead>
+          <tbody>';
+            if (isset($category) && !$category == '') {
+              $sqlQuery = "SELECT * FROM Artikel as a
+              INNER JOIN Untergruppe as u
+              ON a.fidUntergruppe = u.idUntergruppe
+              WHERE fidHauptgruppe = $category";
             } else {
-                $sqlQuery = "SELECT * FROM Artikel";
+              $sqlQuery = "SELECT * FROM Artikel";
             }
 
-              $articlelist = $db->getQueryResults($sqlQuery);
-              foreach ($articlelist as $article){
-                  $articleID = $article['idArtikel'];
-                  $price = $article['NettoPreis'];
-                  $title = $article['ArtikelTitel'];
-                  $description = $article['Beschreibung'];
-                  $imagelink = $article['BildLink'];
-                  $subgroupID = $article['fidUntergruppe'];
-                  $subgroupQuery = "SELECT Titel FROM Untergruppe WHERE idUntergruppe=$subgroupID";
-                  $subgroupQResult = $db->getQueryResults($subgroupQuery);
-                  $subgroup = $subgroupQResult[0]['Titel'];
-                  $doc .= '<tr class="singlePageLink">' . "\n";
-                $doc .= '<tr class="singlePageLink">' . "\n";
-                $doc .= "<td>$title" . ' <br \> <input type="button" class="addButton" value="hinzufügen"></td>' . "\n";
-                $doc .= "<td>$price EUR</td>\n";
-                $doc .= '<td><input type="number" value="1" class="nudAmount"></td>' . "\n";
-                $doc .= "<td>$description</td>\n";
-                $doc .= '<td><img style="width: 100px;" src="' . $imagelink . '"></td>' . "\n";
-                $doc .= '           </tr>' . "\n";
+            $articlelist = $db->getQueryResults($sqlQuery);
+            foreach ($articlelist as $article){
+              $articleID = $article['idArtikel'];
+              $price = $article['NettoPreis'];
+              $title = $article['ArtikelTitel'];
+              $description = $article['Beschreibung'];
+              $imagelink = $article['BildLink'];
+              $subgroupID = $article['fidUntergruppe'];
+              $subgroupQuery = "SELECT Titel FROM Untergruppe WHERE idUntergruppe=$subgroupID";
+              $subgroupQResult = $db->getQueryResults($subgroupQuery);
+              $subgroup = $subgroupQResult[0]['Titel'];
+              $doc .= '<tr class="singlePageLink">' . "\n";
+              $doc .= '<tr class="singlePageLink">' . "\n";
+              $doc .= "<td>$title" . ' <br \> <input type="button" class="addButton" value="hinzufügen"></td>' . "\n";
+              $doc .= "<td>$price EUR</td>\n";
+              $doc .= '<td><input type="number" value="1" class="nudAmount"></td>' . "\n";
+              $doc .= "<td>$description</td>\n";
+              $doc .= '<td><img style="width: 100px;" src="' . $imagelink . '"></td>' . "\n";
+              $doc .= '           </tr>' . "\n";
             }
-              $doc .= '              </tbody>
-            </table>
-                    <input type="button" class="addButton" value="zum Warenkorb">
-          </div>
-        </div>';
+            $doc .= '              </tbody>
+          </table>
+          <input type="button" class="addButton" value="zum Warenkorb">
+        </div>
+      </div>';
     }
-}
+  }
