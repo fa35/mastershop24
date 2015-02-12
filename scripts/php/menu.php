@@ -21,7 +21,7 @@ class menu {
                     </form>
                   </li>';
                   if (isset($_SESSION['angemeldet']) && $_SESSION['angemeldet']) {
-                      $doc .= '<li><a href="?logout=true">Logout</a></li>';
+                      $doc .= '<li><a href="logout.php">Logout</a></li>';
                   } else {
                   $doc .= '<li><a href="?login=true">Login</a></li>';
                     }

@@ -7,7 +7,8 @@ class body {
         global $params;
         if (isset($params['category'])) {
 	        $this->articleview(intval($params['category']));
-		} elseif (isset($params['login'])) {
+		} elseif (isset($params['login']) && $params['login'] != "success") {
+			print_r($params);
 			$this->loginview();
 		} else {
 			$this->articleview(null);
