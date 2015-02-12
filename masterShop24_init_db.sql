@@ -24,6 +24,9 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Nutzer` (
   PRIMARY KEY (`idNutzer`))
 ENGINE = InnoDB;
 
+INSERT INTO `Nutzer` (`idNutzer`, `Name`, `Vorname`, `Strasse`, `HausNr`, `PLZ`, `Ort`, `Email`, `Passwort`, `isAdmin`) VALUES
+(1,'Foo', 'Bar', 'XStrasse', '3a', 01234, 'Berlin', 'foo@bar.de', 'foobar', 0);
+
 
 -- -----------------------------------------------------
 -- Table `mydb`.`Bestellungen`
