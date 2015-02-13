@@ -7,9 +7,7 @@ class dbconnect {
     var $dbname = "mydb";
     var $conn;
 
-    function dbconnect(){}
-
-    function getConnection(){
+    function dbconnect(){
         try {
             $this->conn = new PDO("mysql:host=$this->servername;dbname=$this->dbname", $this->username, $this->password);
             // set the PDO error mode to exception
@@ -19,6 +17,9 @@ class dbconnect {
         catch(PDOException $e){
             echo "Connection failed: " . $e->getMessage();
         }
+    }
+
+    function getConnection(){
         return $this->conn;
     }
 
