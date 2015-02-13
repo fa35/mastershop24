@@ -22,6 +22,11 @@ class dbconnect {
         return $this->conn;
     }
 
+    /*
+    * @param $sqlQuery: Query as a string
+    *
+    * @return: Array with matching rows. Each row is an associative array with each select field
+    */
     function getQueryResults($sqlQuery){
 
         //$sqlQuery = "SELECT * FROM Artikel";
